@@ -30,7 +30,7 @@ body {
 .logo { 
   height:2.5rem;
   position:center;
-  display:block;
+  display:flex;
   margin:0 auto; /* centra el logo en su contenedor */
 }
 
