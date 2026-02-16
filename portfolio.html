@@ -2,69 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - Patricia de Andrés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="https://i.imgur.com/YvUzLOO.png">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <a href="index.html"><img src="https://i.imgur.com/YvUzLOO.png" alt="Patricia de Andrés" class="logo"></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="portfolio.html" class="active">Portfolio</a>
-      <a href="about.html">About me</a>
-      <a href="mailto:contact@portfolio.com">Contact</a>
-    </div>
-  </nav>
 
-  <!-- Portfolio Projects -->
-  <section class="portfolio-projects">
-    <div class="projects-container" id="portfolio-projects"></div>
-  </section>
+<nav class="nav">
+  <a href="index.html">
+    <img src="https://i.imgur.com/YvUzLOO.png" class="logo" alt="Logo">
+  </a>
 
-  <footer>
-    <div class="footer-links">
-      <a href="mailto:patriciadeandres00@gmail.com">Email</a>
-      <a href="www.linkedin.com/in/patricia-de-andres-gonzalez" target="_blank">LinkedIn</a>
-      <a href="https://www.behance.net/patricideandr" target="_blank">Behance</a>
-    </div>
-  </footer>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
 
-  <script>
-    // Hover effect logic for opacity
-    let hoveredId = null;
+<section class="portfolio">
+  <div id="portfolio-projects" class="projects-container"></div>
+</section>
 
-    fetch('data/projects.json')
-      .then(res => res.json())
-      .then(projects => {
-        const container = document.getElementById('portfolio-projects');
-        projects.forEach(project => {
-          const a = document.createElement('a');
-          a.href = "#";
-          a.className = 'project-card portfolio-card';
-          a.innerHTML = `
-            <img src="${project.image}" alt="${project.title}">
-            <div class="overlay"></div>
-            <div class="text ${project.align || 'left'}">
-              <h1>${project.title}</h1>
-              <h2>${project.subtitle}</h2>
-            </div>
-          `;
+<footer>
+  <div class="footer-links">
+    <a href="mailto:patriciadeandres00@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/patricia-de-andres-gonzalez" target="_blank">LinkedIn</a>
+    <a href="https://www.behance.net/patricideandr" target="_blank">Behance</a>
+  </div>
+</footer>
 
-          // Hover logic
-          a.addEventListener('mouseenter', () => {
-            a.querySelector('.overlay').style.opacity = '1';
-            a.querySelector('.text').style.opacity = '1';
-          });
-          a.addEventListener('mouseleave', () => {
-            a.querySelector('.overlay').style.opacity = '0';
-            a.querySelector('.text').style.opacity = '0';
-          });
-
-          container.appendChild(a);
-        });
-      });
-  </script>
+<script src="js/scripts.js"></script>
 </body>
 </html>
