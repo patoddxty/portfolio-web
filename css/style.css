@@ -148,5 +148,5 @@ footer {
 }
 
 /* Tipografía global */
-h1 { font-family: 'EB Garamond', serif; font-weight:300; }
-h2, h3, h4, p, a, button { font-family: 'EB Garamond', serif; }
+h1 { font-family: 'EB Garamond', serif; font-weight:100; }
+h2, h3, h4, p, a, button { font-family: 'EB Garamond Regular', serif; }
