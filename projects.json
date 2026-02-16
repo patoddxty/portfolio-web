@@ -1,68 +1,35 @@
-[
-  {
-    "id":1,
-    "title":"LOBA",
-    "subtitle":"Short film dossier",
-    "image":"https://i.imgur.com/QUasThZ.jpg"
-  },
-  {
-    "id":2,
-    "title":"CASA DAS CAMELIAS",
-    "subtitle":"Brandbook design",
-    "image":"https://i.imgur.com/XsARRZp.jpeg"
-  },
-  {
-    "id":3,
-    "title":"MAPA MUSEOLÓGICO",
-    "subtitle":"Museological project",
-    "image":"https://i.imgur.com/7voon0x.jpg"
-  }
-   {
-    "id":3,
-    "title":"MAPA MUSEOLÓGICO",
-    "subtitle":"Museological project",
-    "image":"https://i.imgur.com/7voon0x.jpg"
-  }
-   {
-    "id":4,
-    "title":"SATURDAY NIGHT FEVER",
-    "subtitle":"3D Design",
-    "image":"https://images.unsplash.com/photo-1559502898-e32d52a9de3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXNjbyUyMGJhbGwlMjBuaWdodGxpZmV8ZW58MXx8fHwxNzY4MTM5MDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-  }
-  {
-    "id":5,
-    "title":"THE TEMPLE",
-    "subtitle":"3D Design",
-    "image":"https://images.unsplash.com/photo-1689099687226-dc833b93aae8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjBhcmNoaXRlY3R1cmUlMjAzZHxlbnwxfHx8fDE3NjgxMzkwMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  }
-  {
-    "id":6,
-    "title":"HER",
-    "subtitle":"2D Animation",
-    "image":"https://images.unsplash.com/photo-1689099687226-dc833b93aae8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjBhcmNoaXRlY3R1cmUlMjAzZHxlbnwxfHx8fDE3NjgxMzkwMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  }
-  {
-    "id":7,
-    "title":"HAVE YOU SEEN THIS GIRL?",
-    "subtitle":"Illustration",
-    "image":"https://images.unsplash.com/photo-1689099687226-dc833b93aae8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjBhcmNoaXRlY3R1cmUlMjAzZHxlbnwxfHx8fDE3NjgxMzkwMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  }
-  {
-    "id":8,
-    "title":"PORTRAITS OF DEAR FRIENDS",
-    "subtitle":"Illustration",
-    "image":"https://images.unsplash.com/photo-1689099687226-dc833b93aae8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjBhcmNoaXRlY3R1cmUlMjAzZHxlbnwxfHx8fDE3NjgxMzkwMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  }
-  {
-    "id":9,
-    "title":"ARRIVAL",
-    "subtitle":"Illustration",
-    "image":"https://images.unsplash.com/photo-1689099687226-dc833b93aae8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjBhcmNoaXRlY3R1cmUlMjAzZHxlbnwxfHx8fDE3NjgxMzkwMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  }
-  {
-    "id":10,
-    "title":"SUSHITA",
-    "subtitle":"Filming and video editing",
-    "image":"https://images.unsplash.com/photo-1689099687226-dc833b93aae8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjBhcmNoaXRlY3R1cmUlMjAzZHxlbnwxfHx8fDE3NjgxMzkwMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  }
-]
+fetch('data/projects.json')
+  .then(res => res.json())
+  .then(projects => {
+
+    const featured = document.getElementById('featured-projects');
+    const portfolio = document.getElementById('portfolio-projects');
+
+    if (featured) {
+      projects
+        .filter(p => p.id <= 3)
+        .forEach(project => {
+          featured.appendChild(createCard(project));
+        });
+    }
+
+    if (portfolio) {
+      projects.forEach(project => {
+        portfolio.appendChild(createCard(project));
+      });
+    }
+
+    function createCard(project) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+        <img src="${project.image}" alt="${project.title}">
+        <div class="overlay"></div>
+        <div class="text">
+          <h1>${project.title}</h1>
+          <h2>${project.subtitle}</h2>
+        </div>
+      `;
+      return card;
+    }
+  });
