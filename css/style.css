@@ -1,4 +1,4 @@
-/* Reset & base */
+t/* Reset & base */
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: 'EB Garamond', serif; background:#fff; color:#000; }
 
@@ -11,7 +11,7 @@ body { font-family: 'EB Garamond', serif; background:#fff; color:#000; }
 }
 .nav-links a { margin-left:1rem; text-decoration:none; opacity:0.7; transition:opacity 0.3s;}
 .nav-links a:hover, .nav-links .active { opacity:1; }
-.logo { height:2rem; }
+.logo { height:2rem; position:center;}
 
 /* Hero */
 .hero { position:relative; height:70vh; overflow:hidden; }
