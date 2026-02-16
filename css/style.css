@@ -118,7 +118,8 @@ body {
 /* Botón View Portfolio */
 .view-portfolio a {
   position: center;
-  padding:0.5rem 2rem; 
+  padding:0.5rem 2rem;
+  margin: 10rem 2rem
   border:1px solid rgba(0,0,0,0.2); 
   text-decoration:none; 
   color:#000; 
