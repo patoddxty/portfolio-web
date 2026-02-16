@@ -10,7 +10,7 @@ body {
 .nav {
   display:flex;
   justify-content:space-between;
-  align-items:center; /* Centra verticalmente el logo */
+  align-items:center;
   padding:1rem 2rem;
 }
 .nav-links a {
@@ -28,7 +28,8 @@ body {
   color:#333; /* oscurece al pasar cursor */
 }
 .logo { 
-  height:2.5rem; 
+  height:2.5rem;
+  position:center;
   display:block;
   margin:0 auto; /* centra el logo en su contenedor */
 }
