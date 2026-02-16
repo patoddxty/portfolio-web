@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Patricia de Andrés</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html"><img src="https://i.imgur.com/YvUzLOO.png" alt="Patricia de Andrés" class="logo"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="about.html">About me</a>
+      <a href="mailto:contact@portfolio.com">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Portfolio Projects -->
+  <section class="portfolio-projects">
+    <div class="projects-container" id="portfolio-projects"></div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:contact@portfolio.com">Email</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://behance.net" target="_blank">Behance</a>
+    </div>
+  </footer>
+
+  <script>
+    // Hover effect logic for opacity
+    let hoveredId = null;
+
+    fetch('data/projects.json')
+      .then(res => res.json())
+      .then(projects => {
+        const container = document.getElementById('portfolio-projects');
+        projects.forEach(project => {
+          const a = document.createElement('a');
+          a.href = "#";
+          a.className = 'project-card portfolio-card';
+          a.innerHTML = `
+            <img src="${project.image}" alt="${project.title}">
+            <div class="overlay"></div>
+            <div class="text ${project.align || 'left'}">
+              <h1>${project.title}</h1>
+              <h2>${project.subtitle}</h2>
+            </div>
+          `;
+
+          // Hover logic
+          a.addEventListener('mouseenter', () => {
+            a.querySelector('.overlay').style.opacity = '1';
+            a.querySelector('.text').style.opacity = '1';
+          });
+          a.addEventListener('mouseleave', () => {
+            a.querySelector('.overlay').style.opacity = '0';
+            a.querySelector('.text').style.opacity = '0';
+          });
+
+          container.appendChild(a);
+        });
+      });
+  </script>
+</body>
+</html>

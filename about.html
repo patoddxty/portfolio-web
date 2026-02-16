@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Patricia de Andrés</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html"><img src="https://i.imgur.com/YvUzLOO.png" alt="Patricia de Andrés" class="logo"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html" class="active">About me</a>
+      <a href="mailto:contact@portfolio.com">Contact</a>
+    </div>
+  </nav>
+
+  <section class="about-container">
+    <div class="about-header">
+      <h1>About me</h1>
+      <hr class="divider">
+      <p>
+        I'm a multidisciplinary designer passionate about visual storytelling, 
+        combining editorial design, 3D environments, and illustration to create 
+        compelling narratives. My work explores the intersection of traditional 
+        and digital mediums, bringing concepts to life through thoughtful design 
+        and attention to detail.
+      </p>
+    </div>
+
+    <section class="education">
+      <h2>Education</h2>
+      <div id="education-list"></div>
+    </section>
+
+    <section class="experience">
+      <h2>Experience</h2>
+      <div id="experience-list"></div>
+    </section>
+
+    <section class="cv-download">
+      <button onclick="downloadCV()">Download CV</button>
+    </section>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:contact@portfolio.com">Email</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://behance.net" target="_blank">Behance</a>
+    </div>
+  </footer>
+
+  <script>
+    function downloadCV() {
+      alert('CV download would start here. Add your actual CV file.');
+    }
+
+    // Load Education
+    fetch('data/education.json')
+      .then(res => res.json())
+      .then(edu => {
+        const container = document.getElementById('education-list');
+        edu.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'edu-item';
+          div.innerHTML = `
+            <div class="year">${item.year}</div>
+            <h3>${item.title}</h3>
+            <p>${item.institution}</p>
+          `;
+          container.appendChild(div);
+        });
+      });
+
+    // Load Experience
+    fetch('data/experience.json')
+      .then(res => res.json())
+      .then(exp => {
+        const container = document.getElementById('experience-list');
+        exp.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'exp-item';
+          div.innerHTML = `
+            <div class="year">${item.year}</div>
+            <h3>${item.title}</h3>
+            <p class="company">${item.company}</p>
+            <p class="description">${item.description}</p>
+          `;
+          container.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html>
