@@ -1,20 +1,35 @@
-// Render Featured Projects
 fetch('data/projects.json')
   .then(res => res.json())
   .then(projects => {
-    const container = document.getElementById('featured-projects');
-    projects.forEach(p => {
-      const a = document.createElement('a');
-      a.href = 'portfolio.html';
-      a.className = 'project-card';
-      a.innerHTML = `
-        <img src="${p.image}" alt="${p.title}">
+
+    const featured = document.getElementById('featured-projects');
+    const portfolio = document.getElementById('portfolio-projects');
+
+    if (featured) {
+      projects
+        .filter(p => p.id <= 3)
+        .forEach(project => {
+          featured.appendChild(createCard(project));
+        });
+    }
+
+    if (portfolio) {
+      projects.forEach(project => {
+        portfolio.appendChild(createCard(project));
+      });
+    }
+
+    function createCard(project) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+        <img src="${project.image}" alt="${project.title}">
         <div class="overlay"></div>
         <div class="text">
-          <h3>${p.title}</h3>
-          <p>${p.subtitle}</p>
+          <h1>${project.title}</h1>
+          <h2>${project.subtitle}</h2>
         </div>
       `;
-      container.appendChild(a);
-    });
+      return card;
+    }
   });
